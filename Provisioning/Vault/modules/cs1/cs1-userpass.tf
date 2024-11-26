@@ -8,7 +8,7 @@ resource "random_password" "password" {
   special = false
   upper   = false
   lower   = true
-  number  = true
+  numeric = true
 }
 
 resource "vault_generic_endpoint" "cs1-u0" {
@@ -20,7 +20,7 @@ resource "vault_generic_endpoint" "cs1-u0" {
   data_json = <<EOT
 {
   "policies": ["admin", "default"],
-  "${random_password.password.result}"
+  "password": "${random_password.password.result}"
 }
 EOT
 }
@@ -35,7 +35,7 @@ resource "vault_generic_endpoint" "cs1-u1" {
   data_json = <<EOT
 {
   "policies": ["kv-r", "default"],
-  "${random_password.password.result}"
+  "password": "${random_password.password.result}"
 }
 EOT
 }
@@ -50,7 +50,7 @@ resource "vault_generic_endpoint" "cs1-u2" {
   data_json = <<EOT
 {
   "policies": [ "kv-rw", "default"],
-  "${random_password.password.result}"
+  "password": "${random_password.password.result}"
 }
 EOT
 }
@@ -64,7 +64,7 @@ resource "vault_generic_endpoint" "cs1-u3" {
   data_json = <<EOT
 {
   "policies": ["default"],
-  "${random_password.password.result}"
+  "password": "${random_password.password.result}"
 }
 EOT
 }
