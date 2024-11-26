@@ -8,7 +8,7 @@ resource "random_password" "password" {
   special = false
   upper   = false
   lower   = true
-  number  = true
+  numeric = true
 }
 
 resource "vault_generic_endpoint" "cs2-u0" {
